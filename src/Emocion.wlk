@@ -65,7 +65,7 @@ object disgusto inherits Emocion {}
 class EmocionCompuesta {
 
 	const emociones = #{}
-	
+
 	method asentarA(unRecuerdo) {
 		emociones.forEach { emocion => emocion.asentarA(unRecuerdo) }
 	}

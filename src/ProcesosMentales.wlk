@@ -5,7 +5,7 @@ class ProcesosMentales {
 	method aplicarSobre(unaPersona) {
 		return self.procesosOrdenados().forEach { proceso => proceso.apply(unaPersona) }
 	}
-	
+
 	method procesosOrdenados() {
 		if (procesos.contains(liberacionDeRecuerdosDelDia)) {
 			procesos.remove(liberacionDeRecuerdosDelDia)
@@ -28,7 +28,7 @@ object profundizacion {
 			.filter { recuerdo => self.esRecuerdoProfundizable(unaPersona, recuerdo) }
 			.forEach { recuerdo => recuerdo.memorizate() }
 	}
-	
+
 	method esRecuerdoProfundizable(unaPersona, unRecuerdo) {
 		return unaPersona.pensamientosCentrales().contains(unRecuerdo).negate() && unaPersona.emocion().niega(unRecuerdo)
 	}
@@ -41,7 +41,7 @@ object controlHormonal {
 			unaPersona.perderPensamientosCentralesMasAntiguos()
 		}
 	}
-	
+
 	method hayDesequilibrioHormonal(unaPersona) {
 		return self.tienePensamientosCentralesEnMemoriaALargoPlazo(unaPersona) || self.mismaEmocionDominanteEnRecuerdosDelDia(unaPersona)
 	}
@@ -60,7 +60,7 @@ object controlHormonal {
 object restauracionCognitiva {
 	method apply(unaPersona) {
 		unaPersona.aumentarFelicidad(100)
-	}	
+	}
 }
 
 object liberacionDeRecuerdosDelDia {
@@ -71,11 +71,11 @@ object liberacionDeRecuerdosDelDia {
 
 class AsentamientoSelectivo {
 	const palabraClave
-	
+
 	method apply(unaPersona) {
 		self.recuerdosClave(unaPersona).forEach { recuerdo => recuerdo.asentarse() }
 	}
-	
+
 	method recuerdosClave(unaPersona) {
 		return unaPersona.recuerdosDelDia().filter { recuerdo => recuerdo.descripcion().contains(palabraClave) }
 	}

@@ -2,12 +2,12 @@ import Recuerdo.*
 import ProcesosMentales.*
 
 object riley {
-	
+
 	/** Constantes **/
 
 	const property recuerdosDelDia = []
-	const property memoriaLargoPlazo = []	
-	
+	const property memoriaLargoPlazo = []
+
 	/** Atributos **/
 
 	var edad = 12
@@ -16,8 +16,8 @@ object riley {
 	var procesosMentales = new ProcesosMentales()
 	var pensamientoActual
 	var recuerdosCentrales = #{}
-	
-		
+
+
 	/** Getters **/
 
 	method edad() = edad
@@ -32,25 +32,25 @@ object riley {
 	method vivirUnEvento(unaDescripcion) {
 		recuerdosDelDia.add(new Recuerdo(descripcion = unaDescripcion, emocion = emocion, propietario = self))
 	}
-	
-	
+
+
 	/** Punto 2 **/
 
 	method centralizar(unRecuerdo) {
 		recuerdosCentrales.add(unRecuerdo)
 	}
-	
+
 	method disminuirFelicidadPorcentual(unPorcentaje) {
 		nivelFelicidad -= nivelFelicidad * unPorcentaje / 100
 		self.validarNivelFelicidad()
 	}
-	
+
 	method validarNivelFelicidad() {
 		if (nivelFelicidad < 1) {
 			throw new Exception(message = 'La felicidad de la persona está muy baja')
 		}
 	}
-		
+
 
 	/** Punto 3 **/
 
@@ -101,21 +101,21 @@ object riley {
 
 	/** Punto 8 **/
 
-	method rememorarRecuerdo() {		
+	method rememorarRecuerdo() {
 		pensamientoActual = memoriaLargoPlazo.find { recuerdo => recuerdo.esAntiguo() }
 	}
 
 
 	/** Punto 9 **/
 
-	method cantidadRepeticiones(unRecuerdo) {		
+	method cantidadRepeticiones(unRecuerdo) {
 		return memoriaLargoPlazo.count { recuerdo => recuerdo.equals(unRecuerdo) }
 	}
 
 
 	/** Punto 10 **/
 
-	method tieneUnDejaVu() {		
+	method tieneUnDejaVu() {
 		return self.cantidadRepeticiones(pensamientoActual) >= 2
 	}
 
