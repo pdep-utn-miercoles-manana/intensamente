@@ -47,4 +47,11 @@ class Recuerdo {
 		propietario.memorizate(self)
 	}
 
+
+	/** Punto 8 **/
+
+	method esAntiguo() {
+		return fecha.year() < new Date().year() - propietario.edad() / 2
+	}
+
 }

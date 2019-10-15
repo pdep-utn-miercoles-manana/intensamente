@@ -58,3 +58,23 @@ object tristeza inherits Emocion {
 object furia inherits Emocion {}
 object temor inherits Emocion {}
 object disgusto inherits Emocion {}
+
+
+/** Punto 11 **/
+
+class EmocionCompuesta {
+
+	const emociones = #{}
+	
+	method asentarA(unRecuerdo) {
+		emociones.forEach { emocion => emocion.asentarA(unRecuerdo) }
+	}
+
+	method niega(unRecuerdo) {
+		return emociones.all { emocion => emocion.niega(unRecuerdo) }
+	}
+
+	method esAlegre() {
+		return emociones.any { emocion => emocion.esAlegre() }
+	}
+}

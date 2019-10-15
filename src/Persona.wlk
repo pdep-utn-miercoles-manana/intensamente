@@ -6,21 +6,25 @@ object riley {
 	/** Constantes **/
 
 	const property recuerdosDelDia = []
-	const property memoriaLargoPlazo = #{}	
+	const property memoriaLargoPlazo = []	
 	
 	/** Atributos **/
 
+	var edad = 12
 	var emocion
 	var nivelFelicidad = 1000
 	var procesosMentales = new ProcesosMentales()
+	var pensamientoActual
 	var recuerdosCentrales = #{}
 	
 		
 	/** Getters **/
 
+	method edad() = edad
 	method emocion() = emocion
 	method nivelFelicidad() = nivelFelicidad
 	method procesosMentales() = procesosMentales
+	method pensamientoActual() = pensamientoActual
 
 
 	/** Punto 1 **/
@@ -72,7 +76,7 @@ object riley {
 	/** Punto 6 **/
 
 	method niegaAlgunRecuerdo() {
-		return recuerdosDelDia.some { recuerdo => emocion.niega(recuerdo) }
+		return recuerdosDelDia.any { recuerdo => emocion.niega(recuerdo) }
 	}
 
 
@@ -93,4 +97,26 @@ object riley {
 	method aumentarFelicidad(unaCantidad) {
 		nivelFelicidad = 1000.min(nivelFelicidad + unaCantidad)
 	}
+
+
+	/** Punto 8 **/
+
+	method rememorarRecuerdo() {		
+		pensamientoActual = memoriaLargoPlazo.find { recuerdo => recuerdo.esAntiguo() }
+	}
+
+
+	/** Punto 9 **/
+
+	method cantidadRepeticiones(unRecuerdo) {		
+		return memoriaLargoPlazo.count { recuerdo => recuerdo.equals(unRecuerdo) }
+	}
+
+
+	/** Punto 10 **/
+
+	method tieneUnDejaVu() {		
+		return self.cantidadRepeticiones(pensamientoActual) >= 2
+	}
+
 }
